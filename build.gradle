@@ -1,0 +1,31 @@
+plugins {
+    id("java")
+}
+
+group = "org.automation"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server
+    implementation 'org.seleniumhq.selenium:selenium-server:3.14.0'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver
+    implementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.28.0'
+
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+// package jar of the project
+task packageJar(type: Jar) {
+    archiveBaseName.set("selenium-automation")
+    from sourceSets.main.output
+}
+
